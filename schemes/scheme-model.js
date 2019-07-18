@@ -7,7 +7,8 @@ module.exports = {
     find,
     findById,
     findSteps,
-    add
+    add,
+    addStep
 }
 
 function find() {
@@ -29,4 +30,8 @@ async function add(scheme) {
     const id = await db('schemes')
         .insert(scheme);
     return findById(id);
+}
+
+function addStep(step, id) {
+    return db('steps').insert({...step, scheme_id: id})
 }
